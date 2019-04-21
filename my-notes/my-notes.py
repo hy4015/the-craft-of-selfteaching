@@ -1,17 +1,12 @@
-import random
-n = 3 
-a_list = [random.randrange(65, 91) for i in range(n)]
-b_list = [chr(random.randrange(65, 91)) for i in range(n)]
-print(a_list)
-c_list = a_list + b_list + a_list * 2
-print(c_list)
+import matplotlib.pyplot as plt
+from matplotlib_venn import venn2
 
-d_list =c_list.copy()
-print(d_list)
+admins = {'Moose', 'Joker', 'Joker'}
+moderators = {'Ann', 'Chris', 'Jane', 'Moose', 'Zero'}
 
-e_list = [chr(i) for i in d_list]
+v = venn2(subsets=(admins, moderators), set_labels=('admins', 'moderators'))
+v.get_label_by_id('11').set_text('\n'.join(admins & moderators))
+v.get_label_by_id('10').set_text('\n'.join(admins - moderators))
+v.get_label_by_id('01').set_text('\n'.join(moderators - admins))
 
-print(e_list)
-             
-
-#f_list = [ord(i) for i in e_list]
+plt.show()
